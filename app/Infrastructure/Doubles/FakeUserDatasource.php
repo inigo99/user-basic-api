@@ -15,11 +15,18 @@ class FakeUserDatasource implements UserDataSource
 
     public function findByID(string $id): User
     {
-        // TODO: Implement findByID() method.
+        $user = new User($id, "useremail@email.com");
+        return $user;
     }
 
     public function requestList(): array
     {
-        // TODO: Implement requestList() method.
+        $user1 = new User(1, "user1@prueba.com");
+        $user2 = new User(2, "user2@prueba.com");
+        $user3 = new User(3, "user3@prueba.com");
+        $array = array($user1->getId(), $user2->getId(), $user3->getId());
+        $list = json_encode($array);
+        return $list;
     }
+
 }

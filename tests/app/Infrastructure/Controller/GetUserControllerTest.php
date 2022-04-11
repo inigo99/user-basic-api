@@ -3,7 +3,6 @@
 namespace Tests\app\Infrastructure\Controller;
 
 use App\Application\UserDataSource\UserDataSource;
-use App\Domain\User;
 use Exception;
 use Illuminate\Http\Response;
 use Mockery;
@@ -27,26 +26,17 @@ class GetUserControllerTest extends TestCase
     /**
      * @test
      */
-    public function userWithGivenIdDoesNotExist()
-    {
-        $this->userDataSource
-            ->expects('findById')
-            ->with('999')
-            ->never()
-            ->andThrow(new Exception('User not found'));
-
-        $response = $this->get('/api/user/id/999');
-
-        $response->assertExactJson(['error' => 'user does not exist']);
-    }
-
-    /**
-     * @test
-     */
     public function generatedGenericError()
     {
-        $response = $this->get('/api/user/id/');
+        $this->userDataSource
+            ->expects('findByID')
+            ->with(999)
+            ->once()
+            ->andThrow(new Exception('Unexpected error'));
 
-        $response->assertExactJson(['error' => 'Hubo un error al realizar la peticion']);
+        $response = $this->get('/api/users/999');
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)->assertExactJson(['Error' => 'Unexpected error']);
     }
+
 }

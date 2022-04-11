@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Application\UserListAdopter;
+namespace App\Application\UserList;
 
 use App\Application\UserDataSource\UserDataSource;
 
@@ -20,7 +20,7 @@ class IsUserListService
         $this->userDataSource = $userDataSource;
     }
 
-    public function execute(): array
+    public function execute(): string
     {
         $userList = $this->userDataSource->requestList();
 

@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Controllers;
 
-use App\Application\UserAdopter\isUserListAdopterService;
+use App\Application\UserList\IsUserListService;
 use Barryvdh\Debugbar\Controllers\BaseController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
@@ -15,7 +15,7 @@ class GetUserListController extends BaseController
     /**
      * @param $GetUserListController
      */
-    public function __construct(isUserListAdopterService $GetUserListController)
+    public function __construct(IsUserListService $GetUserListController)
     {
         $this->GetUserListController = $GetUserListController;
     }

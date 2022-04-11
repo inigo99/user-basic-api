@@ -2,22 +2,43 @@
 
 namespace App\Infrastructure\Controllers;
 
+use App\Application\User\IsUserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller as BaseController;
+use Exception;
 
-class GetUserController extends BaseController
+class GetUserController extends JsonResponse
 {
-    public function __invoke(string $userId): JsonResponse
+
+    private $userServiceController;
+
+    /**
+     * @param $userService
+     */
+    public function __construct(IsUserService $userService)
     {
-        return response()->json([
-            'error' => "user does not exist"
-        ], Response::HTTP_BAD_REQUEST);
+        $this->userServiceController = $userService;
     }
 
-    public function genericErrorGiven()
+    public function __invoke(string $id): JsonResponse
     {
-        return response()->json(['error' => "Hubo un error al realizar la petición"], Response::HTTP_BAD_REQUEST);
+        try {
+            $userController = $this->userServiceController->execute($id);
+        } catch (Exception $exception) {
+            return response()->json([
+                'Error' => $exception->getMessage()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        if(!$userController) {
+            return response()->json([
+                'Error' => 'No se ha encontrado al usuario'
+            ], Response::HTTP_OK);
+        } else {
+            return response()->json([
+                "{id:" . $id . ", email: 'useremail@email.com'}"
+            ], Response::HTTP_OK);
+        }
     }
 
 }
