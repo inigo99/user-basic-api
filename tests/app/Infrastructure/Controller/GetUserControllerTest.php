@@ -39,4 +39,14 @@ class GetUserControllerTest extends TestCase
 
         $response->assertExactJson(['error' => 'user does not exist']);
     }
+
+    /**
+     * @test
+     */
+    public function generatedGenericError()
+    {
+        $response = $this->get('/api/user/id/');
+
+        $response->assertExactJson(['error' => 'Hubo un error al realizar la peticion']);
+    }
 }

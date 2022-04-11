@@ -14,4 +14,12 @@ class GetUserController extends BaseController
             'error' => "user does not exist"
         ], Response::HTTP_BAD_REQUEST);
     }
+
+    public function genericErrorGiven()
+    {
+        return response()->json(['error' => "Hubo un error al realizar la petición"], Response::HTTP_BAD_REQUEST);
+    }
+
 }
+
+

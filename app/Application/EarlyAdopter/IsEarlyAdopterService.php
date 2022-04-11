@@ -4,6 +4,7 @@ namespace App\Application\EarlyAdopter;
 
 use App\Application\UserDataSource\UserDataSource;
 use Exception;
+use Facade\Ignition\Support\StringComparator;
 
 class IsEarlyAdopterService
 {
@@ -37,4 +38,5 @@ class IsEarlyAdopterService
 
         return $isEarlyAdopter;
     }
+
 }
