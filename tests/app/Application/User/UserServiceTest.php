@@ -71,9 +71,9 @@ class UserServiceTest extends TestCase
     /**
      * @test
      */
-    public function userNotArg()
+    public function userWithNoIDGiven()
     {
-        $id = null;
+        $id = 9999;
 
         //$user = new User($id, "user@email.com");
 
@@ -81,11 +81,12 @@ class UserServiceTest extends TestCase
             ->expects('findByID')
             ->with($id)
             ->once()
-            ->andReturn('Error user id missing');
+            ->andThrow(new Exception('User ID not provided'));
 
-        $userService = $this->userService->execute($id);
+        $this->expectException(Exception::class);
 
-        $this->assertTrue($userService);
+        $this->userService->execute($id);
+
     }
 
 }
