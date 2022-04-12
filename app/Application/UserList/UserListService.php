@@ -20,7 +20,7 @@ class UserListService
         $this->userDataSource = $userDataSource;
     }
 
-    public function execute(): string
+    public function execute(): array
     {
         $userList = $this->userDataSource->requestList();
 

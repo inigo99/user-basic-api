@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 class GetUserListController extends BaseController
 {
 
-    private $GetUserListController;
+    private UserListService $GetUserListController;
 
     /**
      * @param $GetUserListController
@@ -32,7 +32,7 @@ class GetUserListController extends BaseController
 
         return response()->json([
             'GetUserListController' => $userListController
-        ], Response::HTTP_BAD_REQUEST);
+        ], Response::HTTP_OK);
     }
 
 }

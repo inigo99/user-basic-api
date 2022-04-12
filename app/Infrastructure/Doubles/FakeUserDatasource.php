@@ -11,6 +11,8 @@ class FakeUserDatasource implements UserDataSource
     public function findByEmail(string $email): User
     {
         // TODO: Implement findByEmail() method.
+        $user = new User("userId", $email);
+        return $user;
     }
 
     public function findByID(string $id): User

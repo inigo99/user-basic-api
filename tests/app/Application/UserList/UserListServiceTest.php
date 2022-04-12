@@ -9,7 +9,7 @@ use PharIo\Manifest\ElementCollectionException;
 use Tests\TestCase;
 use Exception;
 
-class IsUserListServiceTest extends TestCase
+class UserListServiceTest extends TestCase
 {
 
     private UserListService $userListService;

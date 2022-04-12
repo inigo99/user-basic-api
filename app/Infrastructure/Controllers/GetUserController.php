@@ -10,7 +10,7 @@ use Exception;
 class GetUserController extends JsonResponse
 {
 
-    private $userServiceController;
+    private UserService $userServiceController;
 
     /**
      * @param $userService
@@ -22,25 +22,29 @@ class GetUserController extends JsonResponse
 
     public function __invoke(string $id): JsonResponse
     {
-        try {
-            //Controlar que el $id no sea vacío. Si es vacio return HTTP_BAD_REQUEST
-
-            $userController = $this->userServiceController->execute($id);
-        } catch (Exception $exception) {
+        if($id == null){
             return response()->json([
-                //COMPROBAR QUE ERROR SALE AQUÍ POR SI ACASO (PARA QUE NO SEA EL DE USER NOT FOUND
-                'Error' => $exception->getMessage()
-            ], Response::HTTP_BAD_REQUEST); //400
-        }
-
-        if(!$userController) {
-            return response()->json([
-                'Error' => 'User not found'
+                'Error' => 'User id not provided'
             ], Response::HTTP_NOT_FOUND); //404
-        } else {
-            return response()->json([
-                "{id:" . $id . ", email: 'useremail@email.com'}"
-            ], Response::HTTP_OK); //200
+        }else {
+            try {
+                $userController = $this->userServiceController->execute($id);
+            } catch (Exception $exception) {
+                return response()->json([
+                    //COMPROBAR QUE ERROR SALE AQUÍ POR SI ACASO (PARA QUE NO SEA EL DE USER NOT FOUND)
+                    'Error' => $exception->getMessage()
+                ], Response::HTTP_BAD_REQUEST); //400
+            }
+
+            if (!$userController) {
+                return response()->json([
+                    'Error' => 'User not found'
+                ], Response::HTTP_NOT_FOUND); //404
+            } else {
+                return response()->json([
+                    "{id:" . $id . ", email: 'useremail@email.com'}"
+                ], Response::HTTP_OK); //200
+            }
         }
     }
 

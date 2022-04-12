@@ -35,7 +35,7 @@ class UserServiceTest extends TestCase
     {
         $id = 9999;
 
-        $user = new User($id, "notExistingEmail@email.com");
+        $user = new User($id, "notexistingemail@email.com");
 
         $this->userDataSource
             ->expects("findByID")

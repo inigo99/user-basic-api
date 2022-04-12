@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller as BaseController;
 
 class EarlyAdopterUserController extends BaseController
 {
-    private $isEarlyAdopterService;
+    private EarlyAdopterService $isEarlyAdopterService;
 
     /**
      * EarlyAdopterUserController constructor.
