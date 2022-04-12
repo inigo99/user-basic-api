@@ -68,4 +68,24 @@ class UserServiceTest extends TestCase
         $this->assertTrue($userService);
     }
 
+    /**
+     * @test
+     */
+    public function userNotArg()
+    {
+        $id = null;
+
+        //$user = new User($id, "user@email.com");
+
+        $this->userDataSource
+            ->expects('findByID')
+            ->with($id)
+            ->once()
+            ->andReturn('Error user id missing');
+
+        $userService = $this->userService->execute($id);
+
+        $this->assertTrue($userService);
+    }
+
 }

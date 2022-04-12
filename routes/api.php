@@ -26,7 +26,22 @@ Route::get(
     StatusController::class
 );
 
-Route::get('user/{email}', EarlyAdopterUserController::class);
-Route::get('user/id/{userId}', GetUserController::class);
-Route::get('users/list', GetUserListController::class);
-Route::get('users/{userId}', GetUserController::class);
+Route::get(
+    'user/{email}',
+    EarlyAdopterUserController::class
+);
+
+Route::get(
+    'user/id/{userId}',
+    GetUserController::class
+);
+
+Route::get(
+    'users/list',
+    GetUserListController::class
+);
+
+Route::get(
+    'users/{userId}',
+    GetUserController::class
+);
