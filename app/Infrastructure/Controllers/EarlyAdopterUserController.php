@@ -2,20 +2,20 @@
 
 namespace App\Infrastructure\Controllers;
 
-use App\Application\EarlyAdopter\IsEarlyAdopterService;
+use App\Application\EarlyAdopter\EarlyAdopterService;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
 
-class IsEarlyAdopterUserController extends BaseController
+class EarlyAdopterUserController extends BaseController
 {
     private $isEarlyAdopterService;
 
     /**
-     * IsEarlyAdopterUserController constructor.
+     * EarlyAdopterUserController constructor.
      */
-    public function __construct(IsEarlyAdopterService $isEarlyAdopterService)
+    public function __construct(EarlyAdopterService $isEarlyAdopterService)
     {
         $this->isEarlyAdopterService = $isEarlyAdopterService;
     }
@@ -26,7 +26,7 @@ class IsEarlyAdopterUserController extends BaseController
             $isEarlyAdopter = $this->isEarlyAdopterService->execute($email);
         } catch (Exception $exception) {
             return response()->json([
-                'error' => $exception->getMessage()
+                'Error' => $exception->getMessage()
             ], Response::HTTP_BAD_REQUEST);
         }
 

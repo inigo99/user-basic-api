@@ -3,7 +3,7 @@
 namespace Tests\app\Application\EarlyAdopter;
 
 use App\Application\UserDataSource\UserDataSource;
-use App\Application\UserList\IsUserListService;
+use App\Application\UserList\UserListService;
 use App\Domain\User;
 use PharIo\Manifest\ElementCollectionException;
 use Tests\TestCase;
@@ -12,7 +12,7 @@ use Exception;
 class IsUserListServiceTest extends TestCase
 {
 
-    private IsUserListService $userListService;
+    private UserListService $userListService;
     private UserDataSource $userDataSource;
 
     protected function setUp(): void
@@ -21,7 +21,7 @@ class IsUserListServiceTest extends TestCase
 
         $this->userDataSource = \Mockery::mock(UserDataSource::class);
 
-        $this->userListService = new IsUserListService($this->userDataSource);
+        $this->userListService = new UserListService($this->userDataSource);
     }
 
     /**

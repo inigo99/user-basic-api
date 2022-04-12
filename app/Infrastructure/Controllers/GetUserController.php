@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Controllers;
 
-use App\Application\User\IsUserService;
+use App\Application\User\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Exception;
@@ -15,7 +15,7 @@ class GetUserController extends JsonResponse
     /**
      * @param $userService
      */
-    public function __construct(IsUserService $userService)
+    public function __construct(UserService $userService)
     {
         $this->userServiceController = $userService;
     }
@@ -32,7 +32,7 @@ class GetUserController extends JsonResponse
 
         if(!$userController) {
             return response()->json([
-                'Error' => 'No se ha encontrado al usuario'
+                'Error' => 'User not found'
             ], Response::HTTP_OK);
         } else {
             return response()->json([

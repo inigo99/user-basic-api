@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Controllers;
 
-use App\Application\UserList\IsUserListService;
+use App\Application\UserList\UserListService;
 use Barryvdh\Debugbar\Controllers\BaseController;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
@@ -15,7 +15,7 @@ class GetUserListController extends BaseController
     /**
      * @param $GetUserListController
      */
-    public function __construct(IsUserListService $GetUserListController)
+    public function __construct(UserListService $GetUserListController)
     {
         $this->GetUserListController = $GetUserListController;
     }
@@ -26,7 +26,7 @@ class GetUserListController extends BaseController
             $userListController = $this->GetUserListController->execute();
         } catch (Exception $exception) {
             return response()->json([
-                'error' => $exception->getMessage()
+                'Error' => $exception->getMessage()
             ], Response::HTTP_BAD_REQUEST);
         }
 

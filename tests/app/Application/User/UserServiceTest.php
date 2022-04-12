@@ -2,7 +2,7 @@
 
 namespace Tests\app\Application\User;
 
-use App\Application\User\IsUserService;
+use App\Application\User\UserService;
 use App\Application\UserDataSource\UserDataSource;
 use App\Domain\User;
 use Exception;
@@ -13,7 +13,7 @@ use Tests\TestCase;
 class UserServiceTest extends TestCase
 {
 
-    private IsUserService $userService;
+    private UserService $userService;
     private UserDataSource $userDataSource;
 
     /**
@@ -25,7 +25,7 @@ class UserServiceTest extends TestCase
 
         $this->userDataSource = Mockery::mock(UserDataSource::class);
 
-        $this->userService = new IsUserService($this->userDataSource);
+        $this->userService = new UserService($this->userDataSource);
     }
 
     /**
@@ -35,13 +35,13 @@ class UserServiceTest extends TestCase
     {
         $id = 9999;
 
-        $user = new User($id, "not_existing_email@email.com");
+        $user = new User($id, "notExistingEmail@email.com");
 
         $this->userDataSource
             ->expects("findByID")
             ->with($id)
             ->once()
-            ->andThrow(new Exception('Hubo un error al realizar la peticion'));
+            ->andThrow(new Exception('Error while doing request'));
 
         $this->expectException(Exception::class);
 

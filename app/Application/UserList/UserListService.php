@@ -4,7 +4,7 @@ namespace App\Application\UserList;
 
 use App\Application\UserDataSource\UserDataSource;
 
-class IsUserListService
+class UserListService
 {
     /**
      * @var UserDataSource
@@ -12,7 +12,7 @@ class IsUserListService
     private $userDataSource;
 
     /**
-     * IsEarlyAdopterService constructor.
+     * EarlyAdopterService constructor.
      * @param UserDataSource $userDataSource
      */
     public function __construct(UserDataSource $userDataSource)

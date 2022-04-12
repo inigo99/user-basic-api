@@ -4,7 +4,7 @@ namespace App\Application\User;
 
 use App\Application\UserDataSource\UserDataSource;
 
-class IsUserService
+class UserService
 {
 
     private UserDataSource $userDataSource;
@@ -22,7 +22,8 @@ class IsUserService
         $user = $this->userDataSource->findByID($id);
         $userService = false;
 
-        if ($user->getId() < 1000) {
+        $idVal = 1000;
+        if ($user->getId() < $idVal) {
             $userService = true;
         }
 
