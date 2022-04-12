@@ -4,8 +4,9 @@ namespace App\Application\EarlyAdopter;
 
 use App\Application\UserDataSource\UserDataSource;
 use Exception;
+use Facade\Ignition\Support\StringComparator;
 
-class IsEarlyAdopterService
+class EarlyAdopterService
 {
     /**
      * @var UserDataSource
@@ -13,7 +14,7 @@ class IsEarlyAdopterService
     private $userDataSource;
 
     /**
-     * IsEarlyAdopterService constructor.
+     * EarlyAdopterService constructor.
      * @param UserDataSource $userDataSource
      */
     public function __construct(UserDataSource $userDataSource)
@@ -37,4 +38,5 @@ class IsEarlyAdopterService
 
         return $isEarlyAdopter;
     }
+
 }

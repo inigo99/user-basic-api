@@ -2,7 +2,7 @@
 
 namespace Tests\app\Application\EarlyAdopter;
 
-use App\Application\EarlyAdopter\IsEarlyAdopterService;
+use App\Application\EarlyAdopter\EarlyAdopterService;
 use App\Application\UserDataSource\UserDataSource;
 use App\Domain\User;
 use Exception;
@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class IsEarlyAdopterServiceTest extends TestCase
 {
-    private IsEarlyAdopterService $isEarlyAdopterService;
+    private EarlyAdopterService $isEarlyAdopterService;
     private UserDataSource $userDataSource;
 
     /**
@@ -23,7 +23,7 @@ class IsEarlyAdopterServiceTest extends TestCase
 
         $this->userDataSource = Mockery::mock(UserDataSource::class);
 
-        $this->isEarlyAdopterService = new IsEarlyAdopterService($this->userDataSource);
+        $this->isEarlyAdopterService = new EarlyAdopterService($this->userDataSource);
     }
 
     /**
@@ -31,7 +31,7 @@ class IsEarlyAdopterServiceTest extends TestCase
      */
     public function userNotFound()
     {
-        $email = 'not_existing_email@email.com';
+        $email = 'notExistingEmail@email.com';
 
         $user = new User(9999, $email);
 
@@ -51,7 +51,7 @@ class IsEarlyAdopterServiceTest extends TestCase
      */
     public function userIsNotEarlyAdopter()
     {
-        $email = 'not_early_adopter@email.com';
+        $email = 'notEarlyAdopter@email.com';
 
         $user = new User(9999, $email);
 
@@ -71,7 +71,7 @@ class IsEarlyAdopterServiceTest extends TestCase
      */
     public function userIsAnEarlyAdopter()
     {
-        $email = 'not_early_adopter@email.com';
+        $email = 'notEarlyAdopter@email.com';
 
         $user = new User(300, $email);
 

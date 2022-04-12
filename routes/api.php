@@ -1,7 +1,8 @@
 <?php
 
 use App\Infrastructure\Controllers\GetUserController;
-use App\Infrastructure\Controllers\IsEarlyAdopterUserController;
+use App\Infrastructure\Controllers\GetUserListController;
+use App\Infrastructure\Controllers\EarlyAdopterUserController;
 use App\Infrastructure\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,7 @@ Route::get(
     StatusController::class
 );
 
-Route::get('user/{email}', IsEarlyAdopterUserController::class);
+Route::get('user/{email}', EarlyAdopterUserController::class);
 Route::get('user/id/{userId}', GetUserController::class);
+Route::get('users/list', GetUserListController::class);
+Route::get('users/{userId}', GetUserController::class);
