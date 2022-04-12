@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 class GetUserListController extends BaseController
 {
 
-    private $GetUserListController;
+    private UserListService $GetUserListController;
 
     /**
      * @param $GetUserListController
@@ -30,9 +30,16 @@ class GetUserListController extends BaseController
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        return response()->json([
-            'GetUserListController' => $userListController
-        ], Response::HTTP_BAD_REQUEST);
+        if($userListController) {
+            return response()->json([
+                'GetUserListController' => $userListController
+            ], Response::HTTP_OK);
+        } else {
+            return response()->json([
+                'List' => '[]'
+            ], Response::HTTP_OK);
+        }
+
     }
 
 }

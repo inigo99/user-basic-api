@@ -9,7 +9,7 @@ use Exception;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 
-class IsEarlyAdopterServiceTest extends TestCase
+class EarlyAdopterServiceTest extends TestCase
 {
     private EarlyAdopterService $isEarlyAdopterService;
     private UserDataSource $userDataSource;
@@ -31,7 +31,7 @@ class IsEarlyAdopterServiceTest extends TestCase
      */
     public function userNotFound()
     {
-        $email = 'notExistingEmail@email.com';
+        $email = 'notexistingemail@email.com';
 
         $user = new User(9999, $email);
 
@@ -51,7 +51,7 @@ class IsEarlyAdopterServiceTest extends TestCase
      */
     public function userIsNotEarlyAdopter()
     {
-        $email = 'notEarlyAdopter@email.com';
+        $email = 'notearlyadopter@email.com';
 
         $user = new User(9999, $email);
 
@@ -71,7 +71,7 @@ class IsEarlyAdopterServiceTest extends TestCase
      */
     public function userIsAnEarlyAdopter()
     {
-        $email = 'notEarlyAdopter@email.com';
+        $email = 'notearlyadopter@email.com';
 
         $user = new User(300, $email);
 
