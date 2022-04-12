@@ -25,7 +25,7 @@ class GetUserController extends JsonResponse
         if($id == null){
             return response()->json([
                 'Error' => 'User id not provided'
-            ], Response::HTTP_NOT_FOUND); //404
+            ], Response::HTTP_BAD_REQUEST); //404
         }else {
             try {
                 $userController = $this->userServiceController->execute($id);
