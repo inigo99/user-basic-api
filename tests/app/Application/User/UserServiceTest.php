@@ -75,8 +75,6 @@ class UserServiceTest extends TestCase
     {
         $id = 9999;
 
-        //$user = new User($id, "user@email.com");
-
         $this->userDataSource
             ->expects('findByID')
             ->with($id)
